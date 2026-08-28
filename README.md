@@ -5,7 +5,7 @@ terminal with a single command, it opens its own desktop window — built
 with [PySide6](https://doc.qt.io/qtforpython/) — where you configure your
 session, watch a live countdown, and review your focus history.
 
-> pomodoro timer for deepwork and efficency - but mainly for testing stuff ;)
+> pomodoro timer for deepwork and efficency - but mainly for testing DevSecOps stuff ;)
 
 ## Why it looks the way it looks
 
