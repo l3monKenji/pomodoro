@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors
+.vscode/
+.idea/
+.DS_Store
+
+# App data (settings/history are written to the user's Application Support
+# folder at runtime, not into the repo — this just guards against accidents
+# if PSA_DIR ever gets pointed at the project root during local testing)
+*.db
+*.sqlite3
+settings.json
+
+# Sound assets are user-supplied and not checked in (see sounds/README.md)
+sounds/*.mp3

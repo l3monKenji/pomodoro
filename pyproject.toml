@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pomodoro-timer"
+version = "0.1.0"
+description = "A modern, native macOS Pomodoro timer with a distraction-focused blue/green design."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "L3monKenji" }]
+requires-python = ">=3.10"
+dependencies = [
+    "PySide6>=6.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+pomodoro = "pomodoro.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/l3montree-dev/pomodoro"
+
+[tool.setuptools.packages.find]
+where = ["src"]
