@@ -31,3 +31,8 @@ settings.json
 
 # Sound assets are user-supplied and not checked in (see sounds/README.md)
 sounds/*.mp3
+
+# Generated macOS packaging artifacts (rebuilt by packaging/build.sh)
+packaging/Pomodoro.icns
+packaging/Pomodoro.iconset/
+*.spec.bak

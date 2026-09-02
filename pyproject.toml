@@ -18,6 +18,9 @@ dependencies = [
 dev = [
     "pytest>=7.0",
 ]
+package = [
+    "pyinstaller>=6.11",
+]
 
 [project.scripts]
 pomodoro = "pomodoro.cli:main"
