@@ -1,0 +1,170 @@
+# publiccode.yml – Metadaten für das openCode Softwareverzeichnis
+# Standard: https://yml.publiccode.tools/ | Guide: https://guide.opencode.de/de/softwareverzeichnis/publiccode.yml-anlegen
+# Validierung vor dem Commit: https://editor.opencode.de/ → Datei laden → "Validate"
+
+publiccodeYmlVersion: "0.4"
+
+name: "Pomodoro"
+url: "https://github.com/l3monKenji/pomodoro"
+softwareVersion: "0.1.0"
+releaseDate: "2026-09-08" # TODO: tatsächliches Release-/Tag-Datum eintragen (Format YYYY-MM-DD)
+# landingURL: "https://..."   # optional: Projektwebseite, falls vorhanden
+# logo: logo.svg              # TODO: Logo (.svg/.svgz/.png) im Wurzelverzeichnis ablegen und Pfad aktivieren
+
+platforms:
+  - mac
+
+categories:
+  - time-management
+  - time-tracking
+  - productivity-suite
+
+developmentStatus: development
+softwareType: "standalone/desktop"
+
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - de
+
+intendedAudience:
+  countries:
+    - "de"
+  scope:
+    - "government"
+    - "local-authorities"
+
+description:
+  de:
+    genericName: "Fokus-Timer"
+    shortDescription: >
+      Lokaler Fokus-Timer für konzentriertes Arbeiten in der Verwaltung:
+      feste Arbeitsblöcke, bewusste Pausen, ehrliche Fokusstatistik.
+    longDescription: >
+      Pomodoro ist ein schlanker Fokus-Timer für den Arbeitsplatz in der öffentlichen
+      Verwaltung. Die Anwendung überträgt die bewährte Pomodoro-Technik in eine ruhige,
+      native Desktop-Anwendung: Beschäftigte legen die Länge ihrer Fokus- und Pausenphasen
+      fest, starten eine Sitzung und werden anschließend durch abwechselnde Fokus- und
+      Pausenrunden geführt – mit sichtbarem Countdown, akustischem Signal und
+      Systembenachrichtigung bei jedem Phasenwechsel.
+
+      Der Bedarf ist im Verwaltungsalltag real: Sachbearbeitung, Stellungnahmen, Vorlagen,
+      Vergabeunterlagen und Fachkonzepte verlangen zusammenhängende Denkzeit, konkurrieren
+      aber mit einem hohen Aufkommen an E-Mails, Rückfragen und Terminen. Pomodoro schafft
+      dafür einen klaren organisatorischen Rahmen. Ein fester, angekündigter Arbeitsblock
+      macht Deep Work im Team sichtbar und verabredbar, statt ihn dem Zufall zu überlassen.
+      Die kurze Blockdauer senkt die Hemmschwelle, mit einer aufgeschobenen Aufgabe zu
+      beginnen, und die eingeplanten Pausen beugen Ermüdung über den Arbeitstag hinweg vor.
+      Während eine Runde läuft, sind die Timer-Einstellungen gesperrt, sodass eine laufende
+      Fokusphase nicht versehentlich abgebrochen wird.
+
+      Die integrierte Statistik zeigt die tatsächlich geleistete Fokuszeit für heute, die
+      laufende Woche und insgesamt, ergänzt um ein Balkendiagramm der letzten sieben Tage.
+      Über ein frei wählbares Projekt- oder Vorgangskennzeichen lässt sich Fokuszeit einzelnen
+      Verfahren, Projekten oder Fachaufgaben zuordnen – hilfreich für die eigene Wochenplanung,
+      für realistische Aufwandsschätzungen und für eine belastbare Personalbedarfsdiskussion.
+      Gezählt werden ausschließlich vollständig abgeschlossene Fokusrunden; abgebrochene Runden
+      bleiben unberücksichtigt, damit die Zahlen ehrlich bleiben.
+
+      Datenschutz und digitale Souveränität sind im Entwurf angelegt: Die Anwendung arbeitet
+      vollständig lokal. Es gibt keine Benutzerkonten, keine Cloud-Anbindung, keine Telemetrie
+      und kein Crash-Reporting. Einstellungen und Verlauf liegen in einem einzigen Ordner im
+      Benutzerprofil, die Historie kann jederzeit vollständig gelöscht werden. Damit entsteht
+      keine Leistungs- oder Verhaltenskontrolle durch Dritte, und das Werkzeug bleibt in der
+      Hand der oder des Beschäftigten – eine wichtige Voraussetzung für die Akzeptanz in
+      Dienststellen und in der Abstimmung mit Personalvertretungen und Datenschutzbeauftragten.
+
+      Die Anwendung ist bewusst klein und auf einen Zweck beschränkt. Sie wird als
+      eigenständiges macOS-Programm mit mitgelieferter Laufzeitumgebung ausgeliefert und
+      benötigt keine Serverinfrastruktur, keine Datenbank und keinen laufenden Betriebsaufwand.
+      Der Quellcode steht unter der MIT-Lizenz und ist damit für Behörden, Kommunen und
+      öffentliche IT-Dienstleister frei nachnutzbar und anpassbar. Die Timer-Logik ist als
+      eigenständige, oberflächenunabhängige Komponente umgesetzt und durch automatisierte Tests
+      abgesichert; das gesamte Erscheinungsbild ist über zentrale Design-Tokens definiert,
+      sodass sich die Anwendung mit überschaubarem Aufwand an ein behördliches Corporate Design
+      anpassen lässt.
+    features:
+      - Konfigurierbare Fokus-, Pausen- und Langpausendauer sowie Rundenanzahl
+      - Ablenkungsarme Timer-Ansicht mit Fortschrittsring und Countdown
+      - Einstellungen während einer laufenden Runde gesperrt
+      - Auswertung der Fokuszeit für heute, diese Woche und insgesamt
+      - 7-Tage-Diagramm der fokussierten Minuten
+      - Zuordnung von Fokuszeit zu Projekten, Vorgängen oder Fachaufgaben
+      - Akustische Signale und Systembenachrichtigungen bei jedem Phasenwechsel
+      - Vollständig lokale Datenhaltung ohne Konto, Cloud oder Telemetrie
+      - Verlauf jederzeit vollständig löschbar
+      - Helles und dunkles Erscheinungsbild über zentrale Design-Tokens
+      - Auslieferung als eigenständige App ohne Installation von Abhängigkeiten
+      - Freie Nachnutzung unter MIT-Lizenz
+    screenshots:
+      - docs/screenshot-timer.png
+      - docs/screenshot-stats.png
+  en:
+    genericName: "Focus timer"
+    shortDescription: >
+      Local focus timer for public administration: structured work blocks,
+      deliberate breaks and an honest record of focused time.
+    longDescription: >
+      Pomodoro is a small focus timer for desk work in public administration. It turns the
+      well-known Pomodoro Technique into a calm, native desktop application: staff set the
+      length of their focus and break intervals, start a session, and are then guided through
+      alternating focus and break rounds with a live countdown, an audio cue and a system
+      notification on every phase change.
+
+      The need is a practical one. Case handling, statements, draft decisions, procurement
+      documents and technical concepts all require uninterrupted thinking time, yet compete
+      with a steady stream of email, queries and meetings. Pomodoro provides a clear
+      organisational frame for that time. A fixed, announced work block makes deep work
+      visible and easy to agree on within a team instead of leaving it to chance. The short
+      interval lowers the barrier to starting a task that has been put off, and the scheduled
+      breaks keep fatigue from accumulating over the working day. While a round is running the
+      timer settings are locked, so an ongoing focus phase cannot be interrupted by accident.
+
+      The built-in statistics view shows the focused time actually achieved today, this week
+      and all-time, together with a bar chart of the past seven days. A free-text project or
+      case label allows focused time to be attributed to individual procedures, projects or
+      tasks — useful for personal weekly planning, for realistic effort estimates and for
+      well-founded discussions about staffing needs. Only fully completed focus rounds are
+      counted; cancelled rounds are simply left out so the figures stay honest.
+
+      Data protection and digital sovereignty are built into the design. The application runs
+      entirely locally. There are no user accounts, no cloud service, no telemetry and no
+      crash reporting. Settings and history live in a single folder in the user profile, and
+      the history can be erased completely at any time. No third party can derive performance
+      or behaviour monitoring from it, and the tool stays in the hands of the individual
+      employee — an important precondition for acceptance in public bodies and in discussions
+      with staff councils and data protection officers.
+
+      The application is deliberately small and single-purpose. It ships as a self-contained
+      macOS application with its own runtime and requires no server infrastructure, no database
+      and no ongoing operational effort. The source code is available under the MIT licence and
+      can therefore be reused and adapted freely by public bodies, municipalities and public IT
+      service providers. The timer logic is implemented as a separate, UI-independent component
+      covered by automated tests, and the entire appearance is defined through central design
+      tokens, so adapting the application to an organisation's corporate design takes modest
+      effort.
+    features:
+      - Configurable focus, break and long-break durations plus round count
+      - Distraction-resistant timer view with progress ring and countdown
+      - Settings locked while a round is running
+      - Focused time totals for today, this week and all-time
+      - Seven-day bar chart of focused minutes
+      - Attribution of focused time to projects, cases or tasks
+      - Audio cues and system notifications on every phase change
+      - Fully local data storage without account, cloud or telemetry
+      - History can be erased completely at any time
+      - Light and dark theme based on central design tokens
+      - Ships as a self-contained app with no dependencies to install
+      - Free reuse under the MIT licence
+    screenshots:
+      - docs/screenshot-timer.png
+      - docs/screenshot-stats.png
+
+legal:
+  license: MIT
+
+maintenance:
+  type: "community"
+  contacts:
+    - name: "L3monKenji"
+      email: "TODO@example.org" # TODO: erreichbare Kontaktadresse eintragen
