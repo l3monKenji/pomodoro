@@ -9,7 +9,7 @@ url: "https://github.com/l3monKenji/pomodoro"
 softwareVersion: "0.1.0"
 releaseDate: "2026-09-08" # TODO: tatsächliches Release-/Tag-Datum eintragen (Format YYYY-MM-DD)
 # landingURL: "https://..."   # optional: Projektwebseite, falls vorhanden
-logo: logo.svg
+logo: logo.png
 
 platforms:
   - mac

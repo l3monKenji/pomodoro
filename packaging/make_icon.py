@@ -1,5 +1,5 @@
 """Render the app icon (``Pomodoro.icns``) from the shared logo mark at
-``assets/logo-mark.svg``. Run standalone; it writes next to this file.
+``assets/logo-mark.png``. Run standalone; it writes next to this file.
 
     python packaging/make_icon.py
 
@@ -17,14 +17,13 @@ from pathlib import Path
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtCore import QRectF, Qt  # noqa: E402
-from PySide6.QtGui import QBrush, QColor, QGuiApplication, QImage, QLinearGradient, QPainter  # noqa: E402
-from PySide6.QtSvg import QSvgRenderer  # noqa: E402
+from PySide6.QtGui import QBrush, QColor, QGuiApplication, QImage, QLinearGradient, QPainter, QPixmap  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
-MARK_SVG = HERE.parent / "assets" / "logo-mark.svg"
+MARK_PNG = HERE.parent / "assets" / "logo-mark.png"
 
-# Palette lifted from src/pomodoro/gui/theme.py (dark theme background) and
-# from the mark's own stroke colour in assets/logo-mark.svg.
+# Palette lifted from src/pomodoro/gui/theme.py (dark theme background) - the
+# logo mark itself already carries its own blue.
 BG_TOP = QColor("#171f2a")
 BG_BOTTOM = QColor("#0f1620")
 
@@ -48,11 +47,18 @@ def _render(size: int) -> QImage:
     painter.setBrush(QBrush(gradient))
     painter.drawRoundedRect(body, radius, radius)
 
-    # The logo mark, rendered in its own blue against the dark body.
-    renderer = QSvgRenderer(str(MARK_SVG))
+    # The logo mark, in its own blue against the dark body.
     mark_inset = size * 0.16
-    mark_rect = QRectF(mark_inset, mark_inset, size - 2 * mark_inset, size - 2 * mark_inset)
-    renderer.render(painter, mark_rect)
+    mark_side = size - 2 * mark_inset
+    mark = QPixmap(str(MARK_PNG)).scaled(
+        int(mark_side),
+        int(mark_side),
+        Qt.AspectRatioMode.KeepAspectRatio,
+        Qt.TransformationMode.SmoothTransformation,
+    )
+    mark_x = (size - mark.width()) / 2
+    mark_y = (size - mark.height()) / 2
+    painter.drawPixmap(int(mark_x), int(mark_y), mark)
 
     painter.end()
     return image
@@ -62,8 +68,8 @@ def main() -> int:
     if not shutil.which("iconutil"):
         print("iconutil not found - this script only runs on macOS.", file=sys.stderr)
         return 1
-    if not MARK_SVG.is_file():
-        print(f"Logo mark not found at {MARK_SVG}", file=sys.stderr)
+    if not MARK_PNG.is_file():
+        print(f"Logo mark not found at {MARK_PNG}", file=sys.stderr)
         return 1
 
     QGuiApplication(sys.argv)
