@@ -1,6 +1,6 @@
 <div align="center">
 
-# Pomodoro
+<img src="logo.svg" width="320" alt="Pomodoro logo">
 
 **A focused time‑management app for macOS — structured work sessions, deliberate breaks, and a clear picture of where your hours actually go.**
 

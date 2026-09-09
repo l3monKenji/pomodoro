@@ -1,5 +1,5 @@
-"""Render the app icon (``Pomodoro.icns``) from the same blue/ring motif
-the app itself uses. Run standalone; it writes next to this file.
+"""Render the app icon (``Pomodoro.icns``) from the shared logo mark at
+``assets/logo-mark.svg``. Run standalone; it writes next to this file.
 
     python packaging/make_icon.py
 
@@ -17,23 +17,16 @@ from pathlib import Path
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 
 from PySide6.QtCore import QRectF, Qt  # noqa: E402
-from PySide6.QtGui import (  # noqa: E402
-    QBrush,
-    QColor,
-    QGuiApplication,
-    QImage,
-    QLinearGradient,
-    QPainter,
-    QPen,
-)
+from PySide6.QtGui import QBrush, QColor, QGuiApplication, QImage, QLinearGradient, QPainter  # noqa: E402
+from PySide6.QtSvg import QSvgRenderer  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
+MARK_SVG = HERE.parent / "assets" / "logo-mark.svg"
 
-# Palette lifted from src/pomodoro/gui/theme.py (dark theme "focus" blue).
-BG_TOP = QColor("#4f8cff")
-BG_BOTTOM = QColor("#2f5fd0")
-TRACK = QColor(255, 255, 255, 60)
-RING = QColor("#eaf1ff")
+# Palette lifted from src/pomodoro/gui/theme.py (dark theme background) and
+# from the mark's own stroke colour in assets/logo-mark.svg.
+BG_TOP = QColor("#171f2a")
+BG_BOTTOM = QColor("#0f1620")
 
 
 def _render(size: int) -> QImage:
@@ -55,23 +48,11 @@ def _render(size: int) -> QImage:
     painter.setBrush(QBrush(gradient))
     painter.drawRoundedRect(body, radius, radius)
 
-    # Progress ring: full faint track + a 70% arc from 12 o'clock, clockwise.
-    stroke = size * 0.075
-    inset = size * 0.28
-    ring_rect = QRectF(inset, inset, size - 2 * inset, size - 2 * inset)
-
-    track_pen = QPen(TRACK)
-    track_pen.setWidthF(stroke)
-    track_pen.setCapStyle(Qt.PenCapStyle.RoundCap)
-    painter.setPen(track_pen)
-    painter.setBrush(Qt.BrushStyle.NoBrush)
-    painter.drawArc(ring_rect, 0, 360 * 16)
-
-    ring_pen = QPen(RING)
-    ring_pen.setWidthF(stroke)
-    ring_pen.setCapStyle(Qt.PenCapStyle.RoundCap)
-    painter.setPen(ring_pen)
-    painter.drawArc(ring_rect, 90 * 16, int(-0.7 * 360 * 16))
+    # The logo mark, rendered in its own blue against the dark body.
+    renderer = QSvgRenderer(str(MARK_SVG))
+    mark_inset = size * 0.16
+    mark_rect = QRectF(mark_inset, mark_inset, size - 2 * mark_inset, size - 2 * mark_inset)
+    renderer.render(painter, mark_rect)
 
     painter.end()
     return image
@@ -80,6 +61,9 @@ def _render(size: int) -> QImage:
 def main() -> int:
     if not shutil.which("iconutil"):
         print("iconutil not found - this script only runs on macOS.", file=sys.stderr)
+        return 1
+    if not MARK_SVG.is_file():
+        print(f"Logo mark not found at {MARK_SVG}", file=sys.stderr)
         return 1
 
     QGuiApplication(sys.argv)

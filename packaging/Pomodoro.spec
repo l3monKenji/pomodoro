@@ -30,6 +30,8 @@ a = Analysis(
         # Ship the phase-end sounds inside the bundle. Users can still override
         # them by dropping MP3s into ~/Library/Application Support/Pomodoro/sounds/.
         (str(PROJECT_ROOT / "sounds"), "sounds"),
+        # Ship the logo mark used for the in-app header and window icon.
+        (str(PROJECT_ROOT / "assets"), "assets"),
     ],
     hiddenimports=[],
     hookspath=[],

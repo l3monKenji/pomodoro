@@ -5,10 +5,12 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QMainWindow, QPushButton, QTabWidget, QVBoxLayout, QWidget
 
 from ..audio import SoundPlayer
 from ..persistence import HistoryStore, SettingsStore
+from .assets import logo_pixmap
 from .stats_view import StatsView
 from .theme import WINDOW_SIZE, build_stylesheet, themes_by_name
 from .timer_view import TimerView
@@ -18,6 +20,7 @@ class MainWindow(QMainWindow):
     def __init__(self, sounds_dir: Path) -> None:
         super().__init__()
         self.setWindowTitle("Pomodoro")
+        self.setWindowIcon(QIcon(logo_pixmap(256)))
         self.setFixedSize(*WINDOW_SIZE)
 
         self.settings = SettingsStore()
@@ -40,6 +43,13 @@ class MainWindow(QMainWindow):
         root_layout.setSpacing(0)
 
         header = QHBoxLayout()
+        header.setSpacing(10)
+
+        logo_label = QLabel()
+        logo_label.setPixmap(logo_pixmap(32))
+        logo_label.setFixedSize(32, 32)
+        header.addWidget(logo_label)
+
         title_box = QVBoxLayout()
         title_box.setSpacing(2)
         title = QLabel("POMODORO")
